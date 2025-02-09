@@ -1,0 +1,17 @@
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List <Integer> StoreValues= new ArrayList<Integer>();
+        HelperMethod (root, StoreValues);
+        
+
+        return StoreValues;
+    }
+    private void HelperMethod(TreeNode root, List<Integer>StoreValues){
+        if(root != null) {
+          HelperMethod(root.left,StoreValues);
+          StoreValues.add (root.val);
+          HelperMethod(root.right, StoreValues);
+        }
+    }
+    
+}
