@@ -6,6 +6,7 @@ class Solution {
 
         return StoreValues;
     }
+//Use helper method for easier recurssion
     private void HelperMethod(TreeNode root, List<Integer>StoreValues){
         if(root != null) {
           HelperMethod(root.left,StoreValues);
@@ -15,3 +16,6 @@ class Solution {
     }
     
 }
+//Inorder = L-Root-R
+//Preorder= Root - L- R
+//PostOrder = L-R- Root
