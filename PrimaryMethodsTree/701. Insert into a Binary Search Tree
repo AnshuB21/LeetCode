@@ -1,0 +1,30 @@
+class Solution {
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+        //if the tree is null, the returned value should be root , so root= inserthelper()
+      root =InsertHelper(root, val);
+      return root;
+        
+    }
+    private TreeNode InsertHelper(TreeNode root, int val){
+        //Val is not a node, so val should be create as a new node
+        TreeNode newNode = new TreeNode();
+        newNode.val= val;
+      if(root == null){
+        root = newNode;
+        return root;
+      }
+      else if (val < root.val){
+       // if you don't write root.left= inserthelper, just directly Inserthelper, the function will return root value from above if statement but the returned value will not be assigned to anything.
+
+       //      7                                                 7
+       //    /      -- this works are root.left , without it           ,it will get lost
+       //  5                                                  5
+          root.left=InsertHelper(root.left, val);
+      }
+      else{
+        
+         root.right= InsertHelper(root.right, val);
+      }
+      return root;
+    }
+}
