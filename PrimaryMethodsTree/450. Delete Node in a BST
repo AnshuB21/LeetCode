@@ -1,0 +1,51 @@
+//Paste the Code in leetcode or a code editor if the color is hard & dull to understand
+class Solution {
+    public TreeNode deleteNode(TreeNode root, int key) {
+         root = deleteHelper( root, key);
+         return root;
+    }
+    private TreeNode deleteHelper (TreeNode root, int key){
+     if(root == null){
+        return root;
+     }
+     else if(root.val>key){
+        root.left=deleteHelper(root.left, key);
+     }
+     else if( root.val< key){
+        root.right=deleteHelper(root.right, key);
+     }
+     else{
+        if( root. right == null && root.left == null){
+            root = null;
+        }
+        else if( root.right !=null){// find a successor to replace this node
+          root.val =RightSucessor (root);
+          root.right = deleteHelper(root.right,root.val );
+        }
+        else{//find a predecessor to replace this node
+
+         root.val =LeftSucessor (root);
+          root.left = deleteHelper(root.left,root.val );
+        }
+     }
+     return root;
+    }
+    private int RightSucessor(TreeNode root){ //find the least value below the right child of this root node
+        root= root.right;
+    while(root.left!= null){
+        root= root.left;
+    }
+    return root.val;
+    }
+    private int LeftSucessor(TreeNode root){// find the greatest value below the left child of this root node
+     root= root.left;
+    while(root.right!= null){
+        root= root.right;
+    }
+    return root.val;
+    }
+}
+
+/* Overall Time Complexity:
+In the worst case (unbalanced BST), the height h of the tree is O(n), leading to O(n) complexity.
+In the best case (balanced BST), h = O(log n), leading to O(log n) complexity.*/
