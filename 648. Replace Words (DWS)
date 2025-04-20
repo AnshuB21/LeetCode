@@ -1,0 +1,31 @@
+Own Solution:
+class Solution {
+    public String replaceWords(List<String> dictionary, String sentence) {
+        String [] name = sentence.split(" ");
+        //System.out.println(name[0]); Checking if the split is working properly
+        for (int i=0; i<name.length; i++){
+            int j=0;
+             String s = "";
+            while(j<name[i].length()){
+               //take an empty string keep appending the next element to check
+                s= s + name[i].charAt(j);
+               
+             if(dictionary.contains(s)){
+                //System.out.println( name[i].substring(0,j+1));
+                String Replace= name[i].substring(0,j+1);
+                name[i]= Replace; 
+                break;
+             }
+              j++;
+             
+            }
+           
+        }
+        return String.join(" ",name);
+
+      
+    } // All testcases Not passed, Gave the time exceed error on last 6 cases
+}
+============================================================================================================================================================================
+Another Solution:
+Should be solved using Trie for optimal.
